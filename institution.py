@@ -77,9 +77,7 @@ def scrapeInstitution(url, yearFrom, yearTo):
                     insert_obj['units'] = cells[2].text if cells[2].text != '' else 'NULL'
                     insert_obj['output'] = cells[3].text if cells[3].text != '' else 'NULL'
 
-                    # print(insert_obj)
-                    #insert_statement += "insert into power_equip_cmp (category , power_src , chiho , units , kw_output , " + "year" + ") values (1, {}, '{}', {}, {}, {});".format(insert_obj['powerSrc'], insert_obj['chiho'], insert_obj['units'], insert_obj['output'], insert_obj['year'])
-                    insert_statement += "insert into power_equip_cmp (category , power_src , chiho , units , kw_output , " + '"year"' + ") values (1, {powerSrc}, '{chiho}', {units}, {output}, '{year}');".format(**insert_obj)
+                    insert_statement += "insert into power_equip_cmp (subcategory , power_src , chiho , units , kw_output , " + '"year"' + ") values (1, {powerSrc}, '{chiho}', {units}, {output}, '{year}');".format(**insert_obj)
     sqlFile = open("institution.sql", "w")
     sqlFile.write(insert_statement + "commit;")
     return insert_statement
